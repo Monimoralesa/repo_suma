@@ -6,8 +6,30 @@ on:
   workflow_dispatch:   
   
 jobs:
-  ci-to-master:
+  ci-to-master-ubuntu:
     runs-on: ubuntu-latest
+    steps:    
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 10
+      - run: |
+          npm install jest
+          npm test
+          npm run build
+  ci-to-master-windows:
+    runs-on: windows-latest
+    steps:    
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 10
+      - run: |
+          npm install jest
+          npm test
+          npm run build          
+  ci-to-master-mac:
+    runs-on: macoc-latest
     steps:    
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v1
